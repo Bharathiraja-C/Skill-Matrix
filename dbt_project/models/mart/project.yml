@@ -1,0 +1,71 @@
+version: 2
+
+models:
+  - name: user_detail
+    description: Represents the final table combining user skills and projects
+    columns:
+      - name: UserId
+        description: Unique identifier for the user
+        tests:
+          - not_null
+      - name: UserName
+        description: Name of the user
+        tests:
+          - not_null
+      - name: SkillName
+        description: Name of the skill
+        tests:
+          - not_null
+      - name: ProficiencyLevel
+        description: Proficiency level of the user in the skill
+      - name: ProjectName
+        description: Name of the project
+        tests:
+          - not_null
+      - name: ProjectExperience
+        description: Experience gained from the project
+      - name: ProjectRole
+        description: Role of the user in the project
+ 
+  - name: user_designation
+    description: Represents the count of users per designation
+    columns:
+      - name: Designation
+        description: Designation of the user
+        tests:
+          - not_null
+      - name: DesignationCount
+        description: Number of users with the designation
+        tests:
+          - not_null
+  - name: user_engagement
+    description: |
+      Table to calculate user engagement score based on projects, skills, and certifications.
+    columns:
+      - name: UserId
+        description: Unique identifier for the user.
+      - name: Name
+        description: Name of the user.
+      - name: total_projects
+        description: Total number of projects the user has been involved in.
+      - name: total_skills
+        description: Total number of skills the user possesses.
+      - name: total_certifications
+        description: Total number of certifications obtained by the user.
+      - name: engagement_score
+        description: Calculated engagement score for the user.
+  - name: user_proficiency
+    description: |
+      Table to identify the proficiency level of users in their top skill.
+    columns:
+      - name: UserId
+        description: Unique identifier for the user.
+        tests:
+          - unique
+          - not_null
+      - name: Name
+        description: Name of the user.
+      - name: top_skill
+        description: Name of the user's top skill.
+      - name: top_skill_proficiency
+        description: Proficiency level of the user in their top skill.

@@ -1,0 +1,11 @@
+version : 2
+
+sources :
+  - name : Skill_Matrix
+    database : SKILL_MATRIX
+    schema : RAW
+    tables :
+        - name: Users
+        - name: Skills
+        - name: Project
+        - name: Certification
