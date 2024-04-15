@@ -6,8 +6,10 @@ import { useNavigate } from "react-router-dom";
 import InputBase from "@mui/material/InputBase";
 import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
+import { Button} from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 import TableSkeleton from "../Skeleton/TableSkeleton";
 import "./userDetails.css";
 
@@ -216,11 +218,14 @@ const UserPage = ({ userId }) => {
                         <td>
                           {new Date(skill.createdat).toLocaleDateString()}
                         </td>
-                        <td>
-                          <button onClick={() => handleDeleteSkill(skill.id)}>
-                            Delete
-                          </button>
-                        </td>
+                        <td >
+                        <Button
+                          onClick={() => handleDeleteSkill(skill.id)}
+                          style={{ color: "red" }}
+                        >
+                        <DeleteSweepIcon /> 
+                        </Button>
+                      </td>
                       </tr>
                     ))}
                   </tbody>

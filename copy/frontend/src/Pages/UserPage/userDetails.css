@@ -18,6 +18,15 @@
 .table-header {
   background-color: #19105B;
   color: white;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid #fff; /* Add border to table headers */
+}
+
+td, th {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd; /* Add border to table cells */
 }
 
 td {
@@ -34,7 +43,22 @@ td {
   background-color: #FF6196;
 }
 
-/* Media queries for responsiveness */
+.not-approve {
+  background-color: #3B3B98;
+  margin-left: 10px;
+}
+
+/* Highlight pending rows */
+.pending-row {
+  background-color: #f8d7da;
+}
+
+/* Hover effect on table rows */
+.table-hover tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Responsive styles */
 @media (max-width: 768px) {
   .div1 {
     padding: 10px;
@@ -45,20 +69,17 @@ td {
   }
 
   .table-header {
-    font-size: 12px;
+    font-size: 14px;
   }
 
-  td {
-    font-size: 12px;
+  td, th {
+    font-size: 14px;
+    text-align: center;
   }
 }
 
 @media (max-width: 576px) {
   .table-header {
-    font-size: 10px;
-  }
-
-  td {
-    font-size: 10px;
+    font-size: 12px;
   }
 }

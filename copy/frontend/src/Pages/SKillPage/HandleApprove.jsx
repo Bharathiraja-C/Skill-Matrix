@@ -4,10 +4,12 @@ import { Table, Button } from "react-bootstrap";
 import { toast } from 'react-toastify';
 import "../UserPage/UserDetails";
 import TableSkeleton from "../Skeleton/TableSkeleton"; 
+import {  useNavigate } from "react-router-dom";
 
 const UserDetails = ({ userId, skillId }) => {
   const [userDetails, setUserDetails] = useState({});
   const [loading, setLoading] = useState(false);
+  const navigate=useNavigate();
   useEffect(() => {
     const fetchUserDetails = async () => {
       setLoading(true);
@@ -32,7 +34,7 @@ const UserDetails = ({ userId, skillId }) => {
         ...prevUserDetails,
         status: "Approved",
       }));
-      toast.success("Details successfully approved!"); // Set the success message
+      toast.success("Details successfully approved!");
     } catch (error) {
       console.error("Error approving user details:", error);
     }
@@ -45,7 +47,7 @@ const UserDetails = ({ userId, skillId }) => {
         ...prevUserDetails,
         status: "Not Approved",
       }));
-      toast.error("Details not approved!"); // Set the failure message
+      toast.error("Details not approved!"); 
     } catch (error) {
       console.error("Error not approving user details:", error);
     }
@@ -65,6 +67,8 @@ const UserDetails = ({ userId, skillId }) => {
                 <tr>
                   <th className="table-header">Skill Name</th>
                   <th className="table-header">Proficiency Level</th>
+                  <th className="table-header">Status</th>
+                  <th className="table-header">Submitted At</th>
                 </tr>
               </thead>
               <tbody>
@@ -74,6 +78,12 @@ const UserDetails = ({ userId, skillId }) => {
                       <tr>
                         <td>{skill.skillname}</td>
                         <td>{skill.proficiencylevel}</td>
+                        <td>{skill.status}</td>
+                          <td>
+                            {new Date(
+                              skill.createdat
+                            ).toLocaleDateString()}
+                          </td>
                       </tr>
                     )}
                   </React.Fragment>
@@ -94,6 +104,8 @@ const UserDetails = ({ userId, skillId }) => {
                   <th className="table-header">Project Name</th>
                   <th className="table-header">Project Description</th>
                   <th className="table-header">Project Experience</th>
+                  <th className="table-header">Status</th>
+                  <th className="table-header">Submitted At</th>
                 </tr>
               </thead>
               <tbody>
@@ -104,6 +116,12 @@ const UserDetails = ({ userId, skillId }) => {
                         <td>{project.projectname}</td>
                         <td>{project.projectdescription}</td>
                         <td>{project.projectexperience}</td>
+                        <td>{project.status}</td>
+                          <td>
+                            {new Date(
+                              project.created_at
+                            ).toLocaleDateString()}
+                          </td>
                       </tr>
                     )}
                   </React.Fragment>
@@ -123,6 +141,8 @@ const UserDetails = ({ userId, skillId }) => {
                 <tr>
                   <th className="table-header">Certification Name</th>
                   <th className="table-header">Certification File</th>
+                  <th className="table-header">Status</th>
+                  <th className="table-header">Submitted At</th>
                 </tr>
               </thead>
               <tbody>
@@ -132,6 +152,12 @@ const UserDetails = ({ userId, skillId }) => {
                       <tr>
                         <td>{certification.certificationname}</td>
                         <td>{certification.certificationfile}</td>
+                        <td>{certification.status}</td>
+                          <td>
+                            {new Date(
+                              certification.createdat
+                            ).toLocaleDateString()}
+                          </td>
                       </tr>
                     )}
                   </React.Fragment>

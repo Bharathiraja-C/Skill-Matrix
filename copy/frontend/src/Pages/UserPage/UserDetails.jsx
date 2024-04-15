@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import UserService from "../../Services/UserService";
-import { Table, Button, TextField, MenuItem } from "@mui/material";
-import { toast } from 'react-toastify';
+import { Button, TextField, MenuItem } from "@mui/material";
+import { toast } from "react-toastify";
+import { Table } from "react-bootstrap";
 import InputBase from "@mui/material/InputBase";
 import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
+import DeleteSweepIcon from "@mui/icons-material/DeleteSweep";
 import Typography from "@mui/material/Typography";
 import Pagination from "@mui/material/Pagination";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Stack from "@mui/material/Stack";
 import TableSkeleton from "../Skeleton/TableSkeleton";
 
@@ -117,7 +119,7 @@ const UserProfiles = ({ userId }) => {
       const result = await UserService.PromoteUser(userid, designation, role);
       console.log("User promoted successfully:", result);
       toast.success("User promoted successfully!");
-      navigate('/userprofiles');
+      window.location.reload();
     } catch (error) {
       console.error("Error creating user:", error);
       toast.error("Failed to promote user. Please try again");
@@ -127,7 +129,7 @@ const UserProfiles = ({ userId }) => {
     try {
       await UserService.deleteUser(id);
       // Filter out the deleted user from the userDetails state
-      setUserDetails(userDetails.filter(user => user.id !== id));
+      setUserDetails(userDetails.filter((user) => user.id !== id));
       console.log("User deleted successfully");
       toast.success("User deleted Successfully");
     } catch (error) {
@@ -179,13 +181,17 @@ const UserProfiles = ({ userId }) => {
                       <td>{user.role}</td>
                       <td>{user.designation}</td>
                       <td>
-                        <Button onClick={() => handlePromoteClick(user.id)}>
+                        <Button onClick={() => handlePromoteClick(user.id)}
+                        style={{backgroundColor: "green",color:'white' }}>
                           Promote
                         </Button>
                       </td>
                       <td>
-                        <Button onClick={() => handleDeleteUser(user.id)}>
-                          Delete
+                        <Button
+                          onClick={() => handleDeleteUser(user.id)}
+                          style={{ color: "red" }}
+                        >
+                          <DeleteSweepIcon />
                         </Button>
                       </td>
                     </tr>
